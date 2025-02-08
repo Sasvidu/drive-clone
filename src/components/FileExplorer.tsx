@@ -16,7 +16,7 @@ export function FileExplorer({ files }: FileExplorerProps) {
 
   const handleFolderClick = (id: string) => {
     const clickedFolder = currentFolder.find((item) => item.id === id);
-    if (clickedFolder && clickedFolder.children) {
+    if (clickedFolder?.children) {
       setFolderHistory([...folderHistory, currentFolder]);
       setCurrentFolder(clickedFolder.children);
       setPath([...path, clickedFolder.name]);
@@ -30,7 +30,7 @@ export function FileExplorer({ files }: FileExplorerProps) {
       setPath([]);
     } else {
       const newHistory = folderHistory.slice(0, index + 1);
-      setCurrentFolder(newHistory[newHistory.length - 1] as FileItemType[]);
+      setCurrentFolder(newHistory[newHistory.length - 1]!);
       setFolderHistory(newHistory.slice(0, -1));
       setPath(path.slice(0, index + 1));
     }
